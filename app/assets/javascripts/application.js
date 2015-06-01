@@ -18,34 +18,23 @@
 //= require_tree .
 //= require_tree ../templates
 
-// var Todo = Backbone.Model.extend({
-//   urlRoot: '/todos',
-//   defaults: {
-//     title: "empty todo...",
-//     done: false
-//   },
-//   validate: function( attributes ){
-//     if( attributes.title != "my title" ){
-//       console.log("error");
-//       return "You can't be negative years old";
-//     }
-//   },
-//   toggle: function() {
-//     this.save({done: !this.get("done")});
-//   }
-// });
+var Todo = Backbone.Model.extend({
+  urlRoot: '/todos',
+  defaults: {
+    title: "empty todo...",
+    done: false
+  },
+  validate: function( attributes ){
+    if( attributes.title != "my title" ){
+      console.log("error");
+      return "You can't be negative years old";
+    }
+  },
+  toggle: function() {
+    this.save({done: !this.get("done")});
+  }
+});
 
-// var t = new Todo();
-
-// var todoDetails = {
-//   title: 'first todo...',
-//   done: false
-// };
-// t.save(todoDetails, {
-//   success: function (t) {
-//     console.log(t.toJSON());
-//   }
-// });
 
 $(document).ready(function() {
    SearchView = Backbone.View.extend({
@@ -67,3 +56,18 @@ $(document).ready(function() {
 
   var search_view = new SearchView({ el: $("#search_container") });
 })
+
+var AppRouter = Backbone.Router.extend({
+  routes: {
+    "*actions": "defaultRoute" // matches http://example.com/#anything-here
+  }
+});
+// Initiate the router
+var app_router = new AppRouter;
+
+app_router.on('route:defaultRoute', function(actions) {
+  console.log(actions);
+})
+
+// Start Backbone history a necessary step for bookmarkable URL's
+Backbone.history.start();
