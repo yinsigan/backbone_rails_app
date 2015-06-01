@@ -28,11 +28,17 @@ var Todo = Backbone.Model.extend({
   }
 });
 
-var t = new Todo({id: 1});
+var t = new Todo({id: 2});
 
-t.fetch({
-  url: "/todos/" + t.id,
-  success: function (t) {
+// t.fetch({
+//   url: "/todos/" + t.id,
+//   success: function (t) {
+//     console.log(t.toJSON());
+//   }
+// })
+
+t.save({title: "change title"}, {
+  success: function(model) {
     console.log(t.toJSON());
   }
 })
