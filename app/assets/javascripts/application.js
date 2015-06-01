@@ -16,6 +16,7 @@
 //= require underscore
 //= require backbone
 //= require_tree .
+//= require_tree ../templates
 
 // var Todo = Backbone.Model.extend({
 //   urlRoot: '/todos',
@@ -47,13 +48,13 @@
 // });
 
 $(document).ready(function() {
-  SearchView = Backbone.View.extend({
+   SearchView = Backbone.View.extend({
     initialize: function(){
       this.render();
     },
+    template: JST['home/index'],
     render: function(){
-      var template = _.template( $("#search_template").html(), {} );
-      this.$el.html( template );
+      this.$el.html(this.template({search_label: "my search"}));
     },
     events: {
       "click input[type=button]": "doSearch"
