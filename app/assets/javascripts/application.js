@@ -18,33 +18,14 @@
 //= require_tree .
 
 var Todo = Backbone.Model.extend({
-  // initialize: function(){
-  //   this.on("change:title", function(model){
-  //     var title = model.get("title"); // 'Stewie Griffin'
-  //     console.log("Changed my title to " + title );
-  //   });
-  // },
-  defaults: function() {
-    return {
-      title: "empty todo...",
-      done: false
-    };
+  defaults: {
+    title: "empty todo...",
+    done: false
   },
   toggle: function() {
     this.set('done', !this.done);
   }
 });
 
-// var t = new Todo();
-// console.log(t.get('done'))
-// t.toggle()
-// console.log(t.get('done'))
-
 var t = new Todo();
-t.on("change:title", function(model) {
-  var title = model.get("title");
-  console.log("Changed my title from " + t.previous("title") + "to " + title);
-});
-t.set('title', 'first todo');
-t.toggle();
-console.log(t.previousAttributes());
+console.log(t.get('title'));
