@@ -59,15 +59,18 @@ $(document).ready(function() {
 
 var AppRouter = Backbone.Router.extend({
   routes: {
-    "*actions": "defaultRoute" // matches http://example.com/#anything-here
+    "posts/:id": "getPost",
+    "*actions": "defaultRoute" // Backbone will try to match the route above first
   }
 });
-// Initiate the router
+// Instantiate the router
 var app_router = new AppRouter;
-
-app_router.on('route:defaultRoute', function(actions) {
-  console.log(actions);
-})
-
+app_router.on('route:getPost', function (id) {
+  // Note the variable in the route definition being passed in here
+  console.log( "Get post number " + id );
+});
+app_router.on('route:defaultRoute', function (actions) {
+  console.log( actions );
+});
 // Start Backbone history a necessary step for bookmarkable URL's
 Backbone.history.start();
