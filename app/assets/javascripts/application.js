@@ -43,6 +43,6 @@ var Todo = Backbone.Model.extend({
 var t = new Todo();
 t.on("change:title", function(model) {
   var title = model.get("title");
-  console.log("Changed my title to " + title)
+  console.log("Changed my title from " + t.previous("title") + "to " + title);
 });
 t.set('title', 'first todo')
