@@ -30,6 +30,11 @@ var Todo = Backbone.Model.extend({
 
 var t = new Todo({id: 1});
 
+t.bind("error", function(model, error){
+  // We have received an error, log it, alert it or forget it :)
+  console.log( error.status );
+});
+
 t.destroy({
   success: function () {
     console.log('Destroyed');
