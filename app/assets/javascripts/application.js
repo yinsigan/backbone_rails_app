@@ -18,6 +18,7 @@
 //= require_tree .
 
 var Todo = Backbone.Model.extend({
+  urlRoot: '/todos.json',
   defaults: {
     title: "empty todo...",
     done: false
@@ -28,4 +29,12 @@ var Todo = Backbone.Model.extend({
 });
 
 var t = new Todo();
-console.log(t.get('title'));
+var todoDetails = {
+  title: 'first todo...',
+  done: false
+};
+t.save(todoDetails, {
+  success: function (t) {
+    alert(t.toJSON());
+  }
+});
