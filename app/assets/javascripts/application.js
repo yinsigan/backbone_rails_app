@@ -17,26 +17,47 @@
 //= require backbone
 //= require_tree .
 
-var Todo = Backbone.Model.extend({
-  urlRoot: '/todos',
-  defaults: {
-    title: "empty todo...",
-    done: false
-  },
-  toggle: function() {
-    this.save({done: !this.get("done")});
-  }
-});
+// var Todo = Backbone.Model.extend({
+//   urlRoot: '/todos',
+//   defaults: {
+//     title: "empty todo...",
+//     done: false
+//   },
+//   validate: function( attributes ){
+//     if( attributes.title != "my title" ){
+//       console.log("error");
+//       return "You can't be negative years old";
+//     }
+//   },
+//   toggle: function() {
+//     this.save({done: !this.get("done")});
+//   }
+// });
 
-var t = new Todo({id: 1});
+// var t = new Todo();
 
-t.bind("error", function(model, error){
-  // We have received an error, log it, alert it or forget it :)
-  console.log( error.status );
-});
+// var todoDetails = {
+//   title: 'first todo...',
+//   done: false
+// };
+// t.save(todoDetails, {
+//   success: function (t) {
+//     console.log(t.toJSON());
+//   }
+// });
 
-t.destroy({
-  success: function () {
-    console.log('Destroyed');
-  }
-});
+$(document).ready(function() {
+  var SearchView = Backbone.View.extend({
+    initialize: function(){
+      this.render();
+    },
+    render: function(){
+      // Compile the template using underscore
+      var template = _.template( $("#search_template").html(), {} );
+      // Load the compiled HTML into the Backbone "el"
+      this.$el.html( template );
+    }
+  });
+
+  var search_view = new SearchView({ el: $("#search_container") });
+})
