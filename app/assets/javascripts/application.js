@@ -74,3 +74,14 @@ app_router.on('route:defaultRoute', function (actions) {
 });
 // Start Backbone history a necessary step for bookmarkable URL's
 Backbone.history.start();
+
+var Todos = Backbone.Collection.extend({
+  model: Todo
+});
+
+var todo1 = new Todo({ title: "How Bizarre", done: true });
+var todo2 = new Todo({ title: "Sexual Healing", done: false });
+var todo3 = new Todo({ title: "Talk It Over In Bed", done: false });
+
+var todos = new Todos([ todo1, todo2, todo3 ]);
+console.log( todos.models );
